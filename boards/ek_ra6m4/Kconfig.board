@@ -1,0 +1,9 @@
+# Copyright 2023 NXP
+# All rights reserved.
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
+
+config BOARD_EK_RA6M4
+    bool "ek_ra6m4"
+	select SOC_R7FA6M4AF

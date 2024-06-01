@@ -1,0 +1,24 @@
+# Get the user configuration settings
+# this file should define path for toolchain binary path
+set(CMAKE_FIND_ROOT_PATH "/home/lafonso/GNUArmEmbeddedToolchain/arm-gnu-toolchain/bin")
+
+set(CMAKE_SYSTEM_NAME Generic)
+set(CMAKE_SYSTEM_PROCESSOR arm)
+set(TOOLCHAIN_PREFIX arm-none-eabi-)
+
+set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+
+set(CMAKE_C_COMPILER ${CMAKE_FIND_ROOT_PATH}/${TOOLCHAIN_PREFIX}gcc)
+set(CMAKE_ASM_COMPILER ${CMAKE_FIND_ROOT_PATH}/${TOOLCHAIN_PREFIX}gcc)
+set(CMAKE_CXX_COMPILER ${CMAKE_FIND_ROOT_PATH}/${TOOLCHAIN_PREFIX}g++)
+
+find_path(COMPILER_DIR ${CMAKE_C_COMPILER})
+get_filename_component(TOOLCHAIN_DIR ${COMPILER_DIR} DIRECTORY)
+
+set(CMAKE_OBJCOPY ${CMAKE_FIND_ROOT_PATH}/${TOOLCHAIN_PREFIX}objcopy)
+set(CMAKE_SIZE_UTIL ${CMAKE_FIND_ROOT_PATH}/${TOOLCHAIN_PREFIX}size)
+
+set(CMAKE_FIND_ROOT_PATH "/home/lafonso/GNUArmEmbeddedToolchain/arm-gnu-toolchain/bin")
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)

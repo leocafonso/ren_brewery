@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: BSD-3-Clause
+
+config BOARD
+    string
+
+choice
+prompt "Select Board"
+rsource "./*/Kconfig.board"
+endchoice
+
+menu "Board Configuration"
+rsource "./*/Kconfig"
+endmenu

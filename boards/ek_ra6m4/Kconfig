@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: BSD-3-Clause
+if BOARD_EK_RA6M4
+
+config BOARD
+    default "ek_ra6m4"
+
+#### Board level drivers ####
+
+endif

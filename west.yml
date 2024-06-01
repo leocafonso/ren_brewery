@@ -1,0 +1,12 @@
+manifest:
+  remotes:
+  - name: ren_brewery
+    url-base: https://github.com/leocafonso
+  defaults:
+    remote: ren_brewery
+  projects:
+  - name: ra_package
+    path: modules
+  self:
+    path: ren_brewery
+    import: submanifests
