@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <autoconf.h>
-#include "r_uart_api.h"
 
 int main()
 {
