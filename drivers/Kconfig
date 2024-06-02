@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: BSD-3-Clause
+
+menu "Device Drivers"
+
+source "drivers/serial/Kconfig"
+
+endmenu

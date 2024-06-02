@@ -1,0 +1,12 @@
+# SPDX-License-Identifier: BSD-3-Clause
+
+menuconfig SERIAL
+	bool "Serial drivers"
+	help
+	  Enable options for serial drivers.
+
+if SERIAL
+
+source "drivers/serial/Kconfig.renesas_ra"
+
+endif # SERIAL

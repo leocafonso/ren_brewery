@@ -2,3 +2,4 @@ mainmenu "Project Configuration"
 
 rsource "./boards/Kconfig"
 rsource "./soc/Kconfig"
+rsource "./drivers/Kconfig"
