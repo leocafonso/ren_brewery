@@ -6,7 +6,11 @@ manifest:
     remote: ren_brewery
   projects:
   - name: ra_package
-    path: modules
+    revision: main
+    path: modules/ra_package
+  - name: cmsis
+    revision: main
+    path: modules/cmsis
   self:
     path: ren_brewery
     import: submanifests

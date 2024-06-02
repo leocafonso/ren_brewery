@@ -135,7 +135,6 @@ add_executable(${EXECUTABLE} main.c)
 target_include_directories(${EXECUTABLE} PUBLIC ${AUTOCONF_DIR})
 target_include_directories(${EXECUTABLE} PRIVATE ${PROJECT_ROOT}/boards/${CONFIG_BOARD}/bsp)
 target_include_directories(${EXECUTABLE} PRIVATE ${PROJECT_ROOT}/boards/${CONFIG_BOARD}/ra_gen)
-target_include_directories(${EXECUTABLE} PRIVATE ${RootDirPath}/arm/CMSIS_5/CMSIS/Core/Include)
 
 # Add additional warning options for the executable target, enabling them for our sources, but not third
 # party libraries.
@@ -171,4 +170,5 @@ add_custom_command(TARGET ${EXECUTABLE}
     COMMAND ${CMAKE_OBJCOPY} -O binary ${EXECUTABLE} ${PROJECT_NAME}.bin
 )
 
-add_subdirectory(${RootDirPath}/fsp module/fsp)
+add_subdirectory(${RootDirPath}/modules/ra_package modules/ra_package)
+add_subdirectory(${RootDirPath}/modules/cmsis modules/cmsis)
