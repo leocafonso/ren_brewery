@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: Apache-2.0
+
+config IOPORT_RENESAS_RA
+	bool "Renesas RA Series IOPORT Driver"
+	default y
+	help
+	  Enable Renesas RA series IOPORT driver.

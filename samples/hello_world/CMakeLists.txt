@@ -28,8 +28,6 @@ set(EXECUTABLE ${PROJECT_NAME}.elf)
 set(PROJECT_ROOT                ${CMAKE_SOURCE_DIR}/../..)
 list(APPEND CMAKE_MODULE_PATH   ${PROJECT_ROOT}/cmake)
 
-message(${PROJECT_ROOT})
-
 include(kconfig)
 
 if (DEFINED ENV{RootDirPath})
@@ -38,12 +36,10 @@ else()
     SET(RootDirPath "${CMAKE_CURRENT_BINARY_DIR}/../../../..")
 endif()
 
-message(${CONFIG_BOARD})
-add_executable(${EXECUTABLE} main.c)
+message("Building for " ${CONFIG_BOARD})
+add_executable(${EXECUTABLE} hal_entry.c)
 
 target_include_directories(${EXECUTABLE} PUBLIC ${AUTOCONF_DIR})
-target_include_directories(${EXECUTABLE} PRIVATE ${PROJECT_ROOT}/boards/${CONFIG_BOARD}/bsp)
-target_include_directories(${EXECUTABLE} PRIVATE ${PROJECT_ROOT}/boards/${CONFIG_BOARD}/ra_gen)
 target_include_directories(${EXECUTABLE} PRIVATE inc)
 
 # Add additional warning options for the executable target, enabling them for our sources, but not third
@@ -82,3 +78,4 @@ add_custom_command(TARGET ${EXECUTABLE}
 
 add_subdirectory(${RootDirPath}/modules/ra_package modules/ra_package)
 add_subdirectory(${RootDirPath}/modules/cmsis modules/cmsis)
+add_subdirectory(${RootDirPath}/ren_brewery/boards ren_brewery/boards)

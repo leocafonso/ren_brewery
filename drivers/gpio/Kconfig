@@ -1,0 +1,12 @@
+# SPDX-License-Identifier: BSD-3-Clause
+
+menuconfig IOPORT
+	bool "IOPORT drivers"
+	help
+	  Enable options for IOPORT drivers.
+
+if IOPORT
+
+source "drivers/gpio/Kconfig.renesas_ra"
+
+endif # IOPORT

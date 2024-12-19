@@ -1,6 +1,6 @@
 # Get the user configuration settings
 # this file should define path for toolchain binary path
-set(CMAKE_FIND_ROOT_PATH "/home/lafonso/GNUArmEmbeddedToolchain/arm-gnu-toolchain/bin")
+set(CMAKE_FIND_ROOT_PATH "C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\13.2 Rel1\\bin")
 
 set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_PROCESSOR arm)
@@ -8,9 +8,9 @@ set(TOOLCHAIN_PREFIX arm-none-eabi-)
 
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
-set(CMAKE_C_COMPILER ${CMAKE_FIND_ROOT_PATH}/${TOOLCHAIN_PREFIX}gcc)
-set(CMAKE_ASM_COMPILER ${CMAKE_FIND_ROOT_PATH}/${TOOLCHAIN_PREFIX}gcc)
-set(CMAKE_CXX_COMPILER ${CMAKE_FIND_ROOT_PATH}/${TOOLCHAIN_PREFIX}g++)
+set(CMAKE_C_COMPILER ${CMAKE_FIND_ROOT_PATH}/${TOOLCHAIN_PREFIX}gcc.exe)
+set(CMAKE_ASM_COMPILER ${CMAKE_FIND_ROOT_PATH}/${TOOLCHAIN_PREFIX}gcc.exe)
+set(CMAKE_CXX_COMPILER ${CMAKE_FIND_ROOT_PATH}/${TOOLCHAIN_PREFIX}g++.exe)
 
 find_path(COMPILER_DIR ${CMAKE_C_COMPILER})
 get_filename_component(TOOLCHAIN_DIR ${COMPILER_DIR} DIRECTORY)
@@ -102,10 +102,23 @@ add_link_options(
     -Wl,--gc-sections
 )
 
-SET(MCU_FLAGS "-mcpu=cortex-m33 -mthumb")
-SET(CMAKE_BUILD_FLAGS "-O2 -g -mfpu=vfp -mfloat-abi=soft -Wa,-meabi=5 -ffunction-sections -fno-common -pedantic -Wall -Wextra -Wno-missing-field-initializers -ffunction-sections -fdata-sections")
+# SET(MCU_FLAGS "-mcpu=cortex-m33 -mthumb")
+# SET(CMAKE_BUILD_FLAGS "-O2 -g -mfpu=vfp -mfloat-abi=soft -Wa,-meabi=5 --specs=nano.specs -fno-common -pedantic -Wall -Wextra -Wno-missing-field-initializers -ffunction-sections -fdata-sections")
 
-SET(CMAKE_C_FLAGS "${MCU_FLAGS} ${CMAKE_BUILD_FLAGS}"  CACHE INTERNAL "c compiler flags")
+# SET(CMAKE_C_FLAGS "${MCU_FLAGS} ${CMAKE_BUILD_FLAGS}"  CACHE INTERNAL "c compiler flags")
+
+# Define the flags for compilation
+set(MCU_FLAGS "-mcpu=cortex-m33" "-mthumb")
+set(BUILD_FLAGS "-O2" "-g" "-mfpu=vfp" "-mfloat-abi=soft" "-Wa,-meabi=5" "--specs=nano.specs" 
+                "-fno-common" "-Wall" "-Wextra" "-Wno-missing-field-initializers" 
+                "-ffunction-sections" "-fdata-sections")
+
+# Define linker-specific flags
+set(LINKER_FLAGS "-Wl,--gc-sections")
+
+# Apply compile and linker options
+add_compile_options(${MCU_FLAGS} ${BUILD_FLAGS})
+add_link_options(${LINKER_FLAGS})
 
 # This call tells the linker to link the standard library components to all the libraries and executables
 # added after the call.
@@ -113,4 +126,4 @@ SET(CMAKE_C_FLAGS "${MCU_FLAGS} ${CMAKE_BUILD_FLAGS}"  CACHE INTERNAL "c compile
 # -lc is the libc containing most standard library features
 # -lm is the libm containing math functionality
 # -lnosys provides stubs for the syscalls, essentially placeholders for what would be operating system calls
-link_libraries("-lc -lm -lnosys")
+link_libraries("-lm")
